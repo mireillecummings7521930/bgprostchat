@@ -51,7 +51,7 @@
                 <span class="x_price_current">39</span> <span class="x_currency">€</span>
               </div>
             </div>
-            <form id="healthinlife_profitclicks" method="post" action="https://tracker.everad.com/conversion/new" class="x_order_form">
+            <form id="healthinlife_profitclicks" method="post" action="" class="x_order_form">
               <div class="form-group">
                 <input type="text" class="form-control input-lg" name="name" placeholder="Вашето име" required><br>
               </div>
@@ -433,5 +433,79 @@ document.addEventListener('DOMContentLoaded', function () {
     			script.src = './popup.js?language=bg';
 			    head.appendChild(script);
 			}, 3000);
-		</script><script>!function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a="function"==typeof require&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n||e)},l,l.exports,e,t,n,r)}return n[o].exports}for(var i="function"==typeof require&&require,o=0;o<r.length;o++)s(r[o]);return s}({1:[function(require,module,exports){function setupCountry(countryCode){var isEu=euCountries.includes(countryCode);$(".europe").toggle(isEu),$(".non-europe").toggle(!isEu),changePrices(countryCode),$(".x_order_form, .x_subscribe_form").each(function(){function validation(){var text,name=$.trim($('input[name="name"]',this).val()),phone=($('input[name="phone"]',this).val()||"").replace(/[^0-9]+/g,"");return name?!(phone.length<8&&(text=$("body").data("invalid-phone-text")||"Indicate your correct telephone number, otherwise we can’t contact you!",alert(text),1)):(text=$("body").data("invalid-name-text")||"Indicate your correct name, please!",alert(text),!1)}var $el=$(this),isOrder=$el.is(".x_order_form"),countryInput=$el.find('select[name="country_code"]');countryInput.length?(countryInput.val(countryCode),countryInput.on("change",function(){changePrices(this.value)})):ensureHiddenInput($el,"country_code",countryCode),isOrder?$el.on("submit",validation):ensureHiddenInput($el,"redirect_url",window.location.origin+"/subscribe.html")}),window.additional_phone_in_downloaded&&$(".clone-phone").each(function(){var $cloned=$(this).clone();if("INPUT"===$cloned.prop("tagName"))$cloned.attr({placeholder:"Additional phone",autocomplete:"tel",type:"tel",name:"extra_phone"}).removeAttr("id").removeAttr("required").insertAfter(this);else{var $label=$cloned.find("label"),labelText=$label.text();$label.text(window.additional_phone_placeholder||labelText);var $innerInput=$cloned.find("input").first(),placeholder=$innerInput.attr("placeholder")||"";$innerInput.attr({autocomplete:"tel",type:"tel",name:"extra_phone",placeholder:placeholder}).removeAttr("id").removeAttr("required"),$cloned.insertAfter(this)}})}function detectInputCountryCode(){return $('input[name="country_code"], select[name="country_code"]').map(function(){return $(this).val()}).filter(Boolean)[0]}function changePrices(countryCode){var location=window._locations.find(function(l){return l.country_code===countryCode})||window._location;location&&($(".x_price_current").text(location.price_current),$(".x_price_previous").text(location.price_previous),$(".x_price_total").text(location.price_total),$(".x_price_delivery").text(location.price_delivery),$(".x_currency").text(location.currency||""))}function ensureHiddenInput($el,name,value){const $input=$el.find('input[name="'+name+'"]');$input.length?$input.attr("value",value):$el.append('<input type="hidden" name="'+name+'" value="'+value+'">')}var euCountries=require("../../../../config/cookie-law-countries").hasLaw;$(document).ready(function(){window._locations=window._locations||[],window._location=window._locations[0]||{};var queryCountryCode=(window.location.search.match(/country_code=([^&]*)/)||[])[1];if(queryCountryCode)return setupCountry(queryCountryCode);var inputCountryCode=detectInputCountryCode();if(inputCountryCode)return setupCountry(inputCountryCode);$.getJSON("https://geoip-db.com/json/").done(function(data){return data=data||{},setupCountry(data.country_code)}).fail(function(jqxhr,textStatus,error){return console.error(error),setupCountry("")})})},{"../../../../config/cookie-law-countries":2}],2:[function(require,module,exports){module.exports={hasLaw:["AT","BE","BG","HR","CZ","CY","DK","EE","FI","FR","DE","EL","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","SK","SI","ES","SE","GB","UK"]}},{}]},{},[1]);</script><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try {  w.yaCounter56145019 = new Ya.Metrika({id:56145019,webvisor:true,clickmap:true, trackLinks:true,accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0],s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript";s.async = true;s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }})(document, window, "yandex_metrika_callbacks");</script></body>
+		</script><script>!function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a="function"==typeof require&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n||e)},l,l.exports,e,t,n,r)}return n[o].exports}for(var i="function"==typeof require&&require,o=0;o<r.length;o++)s(r[o]);return s}({1:[function(require,module,exports){function setupCountry(countryCode){var isEu=euCountries.includes(countryCode);$(".europe").toggle(isEu),$(".non-europe").toggle(!isEu),changePrices(countryCode),$(".x_order_form, .x_subscribe_form").each(function(){function validation(){var text,name=$.trim($('input[name="name"]',this).val()),phone=($('input[name="phone"]',this).val()||"").replace(/[^0-9]+/g,"");return name?!(phone.length<8&&(text=$("body").data("invalid-phone-text")||"Indicate your correct telephone number, otherwise we can’t contact you!",alert(text),1)):(text=$("body").data("invalid-name-text")||"Indicate your correct name, please!",alert(text),!1)}var $el=$(this),isOrder=$el.is(".x_order_form"),countryInput=$el.find('select[name="country_code"]');countryInput.length?(countryInput.val(countryCode),countryInput.on("change",function(){changePrices(this.value)})):ensureHiddenInput($el,"country_code",countryCode),isOrder?$el.on("submit",validation):ensureHiddenInput($el,"redirect_url",window.location.origin+"/subscribe.html")}),window.additional_phone_in_downloaded&&$(".clone-phone").each(function(){var $cloned=$(this).clone();if("INPUT"===$cloned.prop("tagName"))$cloned.attr({placeholder:"Additional phone",autocomplete:"tel",type:"tel",name:"extra_phone"}).removeAttr("id").removeAttr("required").insertAfter(this);else{var $label=$cloned.find("label"),labelText=$label.text();$label.text(window.additional_phone_placeholder||labelText);var $innerInput=$cloned.find("input").first(),placeholder=$innerInput.attr("placeholder")||"";$innerInput.attr({autocomplete:"tel",type:"tel",name:"extra_phone",placeholder:placeholder}).removeAttr("id").removeAttr("required"),$cloned.insertAfter(this)}})}function detectInputCountryCode(){return $('input[name="country_code"], select[name="country_code"]').map(function(){return $(this).val()}).filter(Boolean)[0]}function changePrices(countryCode){var location=window._locations.find(function(l){return l.country_code===countryCode})||window._location;location&&($(".x_price_current").text(location.price_current),$(".x_price_previous").text(location.price_previous),$(".x_price_total").text(location.price_total),$(".x_price_delivery").text(location.price_delivery),$(".x_currency").text(location.currency||""))}function ensureHiddenInput($el,name,value){const $input=$el.find('input[name="'+name+'"]');$input.length?$input.attr("value",value):$el.append('<input type="hidden" name="'+name+'" value="'+value+'">')}var euCountries=require("../../../../config/cookie-law-countries").hasLaw;$(document).ready(function(){window._locations=window._locations||[],window._location=window._locations[0]||{};var queryCountryCode=(window.location.search.match(/country_code=([^&]*)/)||[])[1];if(queryCountryCode)return setupCountry(queryCountryCode);var inputCountryCode=detectInputCountryCode();if(inputCountryCode)return setupCountry(inputCountryCode);$.getJSON("https://geoip-db.com/json/").done(function(data){return data=data||{},setupCountry(data.country_code)}).fail(function(jqxhr,textStatus,error){return console.error(error),setupCountry("")})})},{"../../../../config/cookie-law-countries":2}],2:[function(require,module,exports){module.exports={hasLaw:["AT","BE","BG","HR","CZ","CY","DK","EE","FI","FR","DE","EL","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","SK","SI","ES","SE","GB","UK"]}},{}]},{},[1]);</script><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try {  w.yaCounter56145019 = new Ya.Metrika({id:56145019,webvisor:true,clickmap:true, trackLinks:true,accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0],s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript";s.async = true;s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }})(document, window, "yandex_metrika_callbacks");</script>
+		
+		
+		
+		<!-- UNILAND START -->
+<script type="text/javascript" src="https://olegunik.toooutlet.com/app/web/js/uniland.js?5fc63ffdbe368"></script>
+<script type="text/javascript">
+    var scripts = [];
+    start = Date.now();
+
+    var uniland = new Uniland();
+
+    uniland.prelandMode = 0;
+    uniland.landId = 318;
+    uniland.landUrl = "https://mireillecummings7521930.github.io/bgprostchat/index.html?marker_id=8";
+
+        //названия полей формы, откуда скрипт берет данные
+    //    uniland.aliasName = 'name';
+    //    uniland.aliasEmail = 'email';
+    //    uniland.aliasPhone = 'phone';
+    //    uniland.aliasCountry = 'country';
+    //    uniland.aliasComment = 'comment';
+
+    uniland.aliasGoodCode = 'good_code'; //код продукта из списка
+    uniland.aliasGoodsCount = 'goods_count';//выбранное количество
+    uniland.aliasGoodPrice = 'good_price';//цена за шт
+
+    uniland.urlOrder = 'https://olegunik.toooutlet.com/app/web/api/order';
+    uniland.urlEmail = 'https://olegunik.toooutlet.com/app/web/api/email/get';
+    uniland.sendEmptyForm = true; //поставить false, чтобы не отправлять конверсии с пустыми полями
+
+    
+
+
+    uniland.urlPixel = 'https://olegunik.toooutlet.com/app/web/api/pixel';
+
+    uniland.processPixel();
+
+    uniland.setSpanValueByClass('mt_geo', uniland.getMtGeo('Москва'));
+    uniland.setSpanValueByClass('mt_gender', uniland.getMtGender('Женщин'));
+    uniland.setSpanValueByClass('mt_age', uniland.getMtAge('55'));
+
+    //проверяем есть ли JQ
+    if (!window.jQuery) {
+        scripts.push('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
+    }
+
+    scripts.forEach(function (src) {
+        var jq = document.createElement('script');
+        jq.type = 'text/javascript';
+        jq.src = src;
+        document.getElementsByTagName('head')[0].appendChild(jq);
+    });
+
+    function init() {
+        if (window.jQuery) {
+            $(document).ready(function () {
+                uniland.run();
+            });
+        }
+    }
+
+    //ждем 1 сек пока все загрузится и вешаем события
+    setTimeout(init, 1000);
+</script>
+<noscript>
+    <div><img src="https://olegunik.toooutlet.com/app/web/api/pixel?land_id=318" style="position:absolute; left:-9999px;"
+              alt=""/></div>
+</noscript>
+<!-- UNILAND END -->
+
+
+		
+		
+		</body>
 </html>
